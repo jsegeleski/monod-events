@@ -7,6 +7,7 @@ import {
   subscribeToKlaviyoNewsletter,
 
 } from "@/lib/klaviyo";
+import { formatEventDate } from "@/lib/dates";
 
 async function registerRunner(formData: FormData) {
   "use server";
@@ -130,7 +131,7 @@ export default async function RegisterPage({
 
       <p>
         <strong>Date:</strong>{" "}
-        {new Date(event.event_date).toLocaleString()}
+        {formatEventDate(event.event_date)}
       </p>
 
       <p>
@@ -161,57 +162,61 @@ export default async function RegisterPage({
         </div>
       )}
 
-      <form action={registerRunner} style={{ display: "grid", gap: "14px" }}>
-        <input type="hidden" name="event_id" value={event.id} />
-        <input type="hidden" name="slug" value={event.slug} />
+      <form action={registerRunner} className="embed-form">
+  <input type="hidden" name="event_id" value={event.id} />
+  <input type="hidden" name="slug" value={event.slug} />
 
-        <label>
-          First Name
-          <input
-            name="first_name"
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </label>
+  <div className="embed-name-row">
+    <label>
+      First Name
+      <input name="first_name" required placeholder="First Name" />
+    </label>
 
-        <label>
-          Last Name
-          <input
-            name="last_name"
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </label>
+    <label>
+      Last Name
+      <input name="last_name" required placeholder="Last Name" />
+    </label>
+  </div>
 
-        <label>
-          Email
-          <input
-            type="email"
-            name="email"
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </label>
+  <label>
+    Email
+    <input
+      type="email"
+      name="email"
+      required
+      placeholder="Enter your email address"
+    />
+  </label>
 
-        <label>
-          <input type="checkbox" name="accepted_waiver" required /> I accept
-          the waiver
-        </label>
+  <p className="embed-legal-text">
+    All participants must read and agree to the event{" "}
+    <a href="https://www.monodsports.com/pages/liability-waiver" target="_blank" rel="noreferrer">
+      Waiver
+    </a>{" "}
+    and{" "}
+    <a href="https://www.monodsports.com/pages/terms-of-use" target="_blank" rel="noreferrer">
+      Terms & Conditions
+    </a>{" "}
+    prior to registering.
+  </p>
 
-        <label>
-          <input type="checkbox" name="accepted_terms" required /> I accept the
-          terms & conditions
-        </label>
+  <label className="embed-checkbox">
+    <input type="checkbox" name="accepted_waiver" required />
+    <span>I accept the terms in the waiver</span>
+  </label>
 
-        <label>
-          <input type="checkbox" name="newsletter_opt_in" /> Subscribe to email
-          updates and newsletters
-        </label>
+  <label className="embed-checkbox">
+    <input type="checkbox" name="accepted_terms" required />
+    <span>I agree to the Terms and Conditions</span>
+  </label>
 
-        <button type="submit" style={{ padding: "12px 16px" }}>
-          Register
-        </button>
-      </form>
+  <label className="embed-checkbox">
+    <input type="checkbox" name="newsletter_opt_in" />
+    <span>Keep me in the loop about latest events and news from Monod's</span>
+  </label>
+
+  <button type="submit">Sign Me Up</button>
+</form>
     </main>
   );
 }
