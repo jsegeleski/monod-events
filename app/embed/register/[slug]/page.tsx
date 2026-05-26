@@ -70,6 +70,7 @@ async function registerRunner(formData: FormData) {
       eventSlug: event.slug,
       eventDate: event.event_date,
       location: event.location,
+      eventDescription: event.description || "",
       
     });
 
@@ -126,8 +127,6 @@ export default async function RegisterPage({
   return (
     <main className="embed-page">
       <h1>{event.title}</h1>
-
-      <p>{event.description}</p>
 
       <p>
         <strong>Date:</strong>{" "}

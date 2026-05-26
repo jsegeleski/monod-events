@@ -8,6 +8,7 @@ export async function sendKlaviyoEvent({
   eventSlug,
   eventDate,
   location,
+  eventDescription,
 }: {
   email: string;
   firstName: string;
@@ -16,6 +17,7 @@ export async function sendKlaviyoEvent({
   eventSlug: string;
   eventDate: string;
   location?: string;
+  eventDescription?: string;
 }) {
   const apiKey = process.env.KLAVIYO_PRIVATE_API_KEY;
 
@@ -52,6 +54,7 @@ export async function sendKlaviyoEvent({
             event_date_readable: readableEventDate,
             event_time_readable: readableEventTime,
             location,
+            event_description: eventDescription,
           },
 
           metric: {

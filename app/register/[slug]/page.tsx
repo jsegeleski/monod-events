@@ -66,6 +66,7 @@ async function registerRunner(formData: FormData) {
       eventSlug: event.slug,
       eventDate: event.event_date,
       location: event.location,
+      eventDescription: event.description || "",
     });
 
     if (newsletterOptIn) {
