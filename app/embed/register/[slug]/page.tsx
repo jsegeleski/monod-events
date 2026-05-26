@@ -124,7 +124,7 @@ export default async function RegisterPage({
   }
 
   return (
-    <main style={{ padding: "40px", fontFamily: "Arial, sans-serif", maxWidth: "600px" }}>
+    <main className="embed-page">
       <h1>{event.title}</h1>
 
       <p>{event.description}</p>

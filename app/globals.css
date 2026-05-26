@@ -836,3 +836,18 @@ tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
+.embed-page {
+  width: 100%;
+  margin: 0;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  background: #f4f5f5;
+  color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+  .embed-page {
+    padding: 18px;
+  }
+}
