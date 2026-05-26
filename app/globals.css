@@ -773,83 +773,22 @@ tr:hover td {
 }
 /* --- END event-row-with-actions replacement --- */
 
-.embed-form {
-  display: grid;
-  gap: 16px;
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.embed-form label {
-  display: grid;
-  gap: 7px;
-  font-size: 14px;
-}
-
-.embed-form input {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  background: #fff;
-  color: #111;
-}
-
-.embed-name-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.embed-legal-text {
-  font-size: 15px;
-  line-height: 1.45;
-  margin: 0;
-}
-
-.embed-legal-text a {
-  text-decoration: underline;
-}
-
-.embed-checkbox {
-  display: flex !important;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.35;
-}
-
-.embed-checkbox input {
-  width: 18px;
-  height: 18px;
-  margin-top: 1px;
-  flex: 0 0 auto;
-}
-
-.embed-checkbox span {
-  flex: 1;
-}
-
-@media (max-width: 520px) {
-  .embed-name-row {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* Embedded signup form */
 .embed-page {
   width: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 24px;
   font-family: Arial, sans-serif;
   background: #ffffff;
   color: #1a1a1a;
+  border: 0;
+  box-shadow: none;
 }
 
-.embed-page h1 {
-  color: #1a1a1a;
-}
-
+.embed-page h1,
+.embed-page h2,
+.embed-page h3,
 .embed-page p {
   color: #1a1a1a;
 }
@@ -858,23 +797,35 @@ tr:hover td {
   display: grid;
   gap: 16px;
   width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
 }
 
 .embed-form label {
   display: grid;
   gap: 7px;
-  font-size: 14px;
   color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .embed-form input {
   width: 100%;
   padding: 14px;
-  font-size: 16px;
   border: 1px solid #aaa;
   border-radius: 4px;
-  background: #fff;
-  color: #111;
+  background: #ffffff;
+  color: #111111;
+  font-size: 16px;
+  box-shadow: none;
+}
+
+.embed-form input:focus {
+  border-color: #555;
+  background: #ffffff;
+  box-shadow: none;
 }
 
 .embed-name-row {
@@ -884,19 +835,23 @@ tr:hover td {
 }
 
 .embed-legal-text {
+  margin: 0;
+  color: #1a1a1a;
   font-size: 15px;
   line-height: 1.45;
-  margin: 0;
 }
 
 .embed-legal-text a {
+  color: #1a1a1a;
   text-decoration: underline;
 }
 
 .embed-checkbox {
   display: flex !important;
+  flex-direction: row;
   align-items: flex-start;
   gap: 10px;
+  color: #1a1a1a;
   line-height: 1.35;
 }
 
@@ -904,7 +859,9 @@ tr:hover td {
   width: 18px;
   height: 18px;
   margin-top: 1px;
+  padding: 0;
   flex: 0 0 auto;
+  box-shadow: none;
 }
 
 .embed-checkbox span {
@@ -914,10 +871,17 @@ tr:hover td {
 .embed-form button {
   width: 100%;
   padding: 16px;
-  border-radius: 999px;
   border: 0;
+  border-radius: 999px;
   background: #1a1a1a;
-  color: #fff;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.embed-form button:hover {
+  background: #333333;
+  color: #ffffff;
+  border: 0;
 }
 
 @media (max-width: 520px) {
