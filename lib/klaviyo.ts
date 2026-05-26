@@ -23,6 +23,22 @@ export async function sendKlaviyoEvent({
     throw new Error("Missing Klaviyo API key");
   }
 
+  const eventDateObject = new Date(eventDate);
+
+  const readableEventDate = eventDateObject.toLocaleDateString("en-CA", {
+    timeZone: "America/Edmonton",
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  const readableEventTime = eventDateObject.toLocaleTimeString("en-CA", {
+    timeZone: "America/Edmonton",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+
   await axios.post(
     "https://a.klaviyo.com/api/events/",
     {
@@ -33,6 +49,8 @@ export async function sendKlaviyoEvent({
             event_title: eventTitle,
             event_slug: eventSlug,
             event_date: eventDate,
+            event_date_readable: readableEventDate,
+            event_time_readable: readableEventTime,
             location,
           },
 
