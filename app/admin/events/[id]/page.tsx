@@ -50,7 +50,8 @@ export default async function EventAdminPage({
 
   const signupUrl = `/register/${event.slug}`;
   const checkInUrl = `/check-in/${event.slug}`;
-  const embedUrl = `http://localhost:3000/embed/register/${event.slug}`;
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const embedUrl = `${appUrl}/embed/register/${event.slug}`;
   const iframeCode = `<iframe src="${embedUrl}" style="width:100%; min-height:720px; border:0;"></iframe>`;
 
   return (
