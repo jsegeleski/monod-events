@@ -220,3 +220,21 @@ export default async function RegisterPage({
     </main>
   );
 }
+
+<script
+  dangerouslySetInnerHTML={{
+    __html: `
+      function sendHeight() {
+        window.parent.postMessage({
+          type: 'monod-event-form-height',
+          height: document.documentElement.scrollHeight
+        }, '*');
+      }
+
+      window.addEventListener('load', sendHeight);
+      window.addEventListener('resize', sendHeight);
+      setTimeout(sendHeight, 250);
+      setTimeout(sendHeight, 1000);
+    `,
+  }}
+/>
