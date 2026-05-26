@@ -893,3 +893,109 @@ tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+
+.admin-layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  background: var(--bg);
+}
+
+.admin-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 24px 18px;
+  border-right: 1px solid var(--line);
+  background: #121212;
+}
+
+.admin-brand {
+  margin-bottom: 28px;
+}
+
+.admin-brand-main {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+.admin-brand-sub {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.admin-nav {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.admin-nav a,
+.admin-event-links a {
+  display: block;
+  padding: 9px 10px;
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.admin-nav a:hover,
+.admin-event-links a:hover {
+  background: var(--panel-soft);
+  color: var(--text);
+}
+
+.admin-sidebar-label {
+  margin-bottom: 8px;
+  color: var(--muted-soft);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.admin-event-links {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-event-links span {
+  display: block;
+  color: var(--text);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-event-links small {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: capitalize;
+}
+
+.admin-main {
+  min-width: 0;
+}
+
+.admin-main .app-shell {
+  max-width: none;
+}
+
+@media (max-width: 860px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .admin-event-links {
+    display: none;
+  }
+}

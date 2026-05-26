@@ -3,6 +3,7 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 import { redirect } from "next/navigation";
 import DeleteEventButton from "./DeleteEventButton";
 import { eventInputToUtcIso, formatEventDate } from "@/lib/dates";
+import AdminShell from "./AdminShell";
 
 async function createEvent(formData: FormData) {
   "use server";
@@ -64,6 +65,7 @@ export default async function AdminPage({
   const showCreateModal = resolvedSearchParams.create === "true";
 
   return (
+  <AdminShell events={events || []}>
     <main className="app-shell dashboard-shell">
       <section className="dashboard-hero">
         <div>
@@ -218,6 +220,7 @@ export default async function AdminPage({
     </section>
   </div>
 )}
-    </main>
-  );
+        </main>
+  </AdminShell>
+);
 }
