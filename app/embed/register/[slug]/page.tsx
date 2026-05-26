@@ -8,6 +8,7 @@ import {
 
 } from "@/lib/klaviyo";
 import { formatEventDate } from "@/lib/dates";
+import { headers } from "next/headers";
 
 async function registerRunner(formData: FormData) {
   "use server";
@@ -35,6 +36,15 @@ async function registerRunner(formData: FormData) {
     throw new Error("Event not found");
   }
 
+const headersList = await headers();
+
+const ipAddress =
+  headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+  headersList.get("x-real-ip") ||
+  "unknown";
+
+const userAgent = headersList.get("user-agent") || "unknown";
+
   const { data: registration, error } = await supabaseAdmin
     .from("registrations")
     .insert({
@@ -49,6 +59,10 @@ async function registerRunner(formData: FormData) {
       waiver_accepted_at: acceptedWaiver ? now : null,
       terms_accepted_at: acceptedTerms ? now : null,
       marketing_consent_timestamp: newsletterOptIn ? now : null,
+      ip_address: ipAddress,
+user_agent: userAgent,
+waiver_version: "2026-05-26",
+terms_version: "2026-05-26",
     })
     .select()
     .single();

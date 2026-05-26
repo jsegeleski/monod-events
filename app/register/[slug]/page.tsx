@@ -4,6 +4,7 @@ import {
   sendKlaviyoEvent,
   subscribeToKlaviyoNewsletter,
 } from "@/lib/klaviyo";
+import { headers } from "next/headers";
 
 async function registerRunner(formData: FormData) {
   "use server";
@@ -18,6 +19,15 @@ async function registerRunner(formData: FormData) {
   const acceptedWaiver = formData.get("accepted_waiver") === "on";
   const acceptedTerms = formData.get("accepted_terms") === "on";
   const newsletterOptIn = formData.get("newsletter_opt_in") === "on";
+
+  const headersList = await headers();
+
+const ipAddress =
+  headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+  headersList.get("x-real-ip") ||
+  "unknown";
+
+const userAgent = headersList.get("user-agent") || "unknown";
 
   const now = new Date().toISOString();
 
@@ -45,6 +55,10 @@ async function registerRunner(formData: FormData) {
       waiver_accepted_at: acceptedWaiver ? now : null,
       terms_accepted_at: acceptedTerms ? now : null,
       marketing_consent_timestamp: newsletterOptIn ? now : null,
+      ip_address: ipAddress,
+user_agent: userAgent,
+waiver_version: "2026-05-26",
+terms_version: "2026-05-26",
     })
     .select()
     .single();
