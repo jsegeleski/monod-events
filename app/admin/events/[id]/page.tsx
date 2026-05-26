@@ -4,6 +4,7 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 import CopyIframeButton from "./CopyIframeButton";
 import DeleteEventButton from "../../DeleteEventButton";
 import { formatEventDate } from "@/lib/dates";
+import AdminShell from "../../AdminShell";
 
 async function deleteEvent(formData: FormData) {
   "use server";
@@ -37,6 +38,11 @@ export default async function EventAdminPage({
 
   if (!event) notFound();
 
+  const { data: sidebarEvents } = await supabaseAdmin
+    .from("events")
+    .select("id, title, status")
+    .order("event_date", { ascending: true });
+
   const { data: registrations } = await supabaseAdmin
     .from("registrations")
     .select("*")
@@ -55,7 +61,8 @@ export default async function EventAdminPage({
   const iframeCode = `<iframe src="${embedUrl}" style="width:100%; min-height:720px; border:0;"></iframe>`;
 
   return (
-    <main className="app-shell dashboard-shell">
+    <AdminShell events={sidebarEvents || []}>
+      <main className="app-shell dashboard-shell">
       <Link href="/admin" className="back-link">
         ← Back to Events
       </Link>
@@ -153,6 +160,7 @@ export default async function EventAdminPage({
           </table>
         </div>
       )}
-    </main>
+      </main>
+    </AdminShell>
   );
 }
