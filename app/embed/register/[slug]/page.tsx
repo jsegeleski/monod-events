@@ -217,24 +217,24 @@ export default async function RegisterPage({
 
   <button type="submit">Sign Me Up</button>
 </form>
-    </main>
-  );
-}
-
 <script
   dangerouslySetInnerHTML={{
     __html: `
       function sendHeight() {
+        const height = document.body.scrollHeight;
         window.parent.postMessage({
-          type: 'monod-event-form-height',
-          height: document.documentElement.scrollHeight
-        }, '*');
+          type: "monod-event-form-height",
+          height: height
+        }, "*");
       }
 
-      window.addEventListener('load', sendHeight);
-      window.addEventListener('resize', sendHeight);
+      window.addEventListener("load", sendHeight);
+      window.addEventListener("resize", sendHeight);
       setTimeout(sendHeight, 250);
       setTimeout(sendHeight, 1000);
     `,
   }}
 />
+    </main>
+  );
+}
