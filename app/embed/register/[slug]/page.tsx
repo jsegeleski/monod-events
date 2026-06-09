@@ -84,7 +84,12 @@ const userAgent = headersList.get("user-agent") || "unknown";
       eventDate: event.event_date,
       location: event.location,
       eventDescription: event.description || "",
-      
+      earlyBadgeQualified: registration?.early_badge_qualified || false,
+earlyBadgeLabel: event.early_badge_label || "",
+earlyBadgeEmailMessage: registration?.early_badge_qualified
+  ? event.early_badge_email_message || ""
+  : "",
+signupPosition: registration?.signup_position || undefined,
     });
 
     if (newsletterOptIn) {

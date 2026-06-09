@@ -9,6 +9,10 @@ export async function sendKlaviyoEvent({
   eventDate,
   location,
   eventDescription,
+  earlyBadgeQualified,
+earlyBadgeLabel,
+earlyBadgeEmailMessage,
+signupPosition,
 }: {
   email: string;
   firstName: string;
@@ -18,6 +22,10 @@ export async function sendKlaviyoEvent({
   eventDate: string;
   location?: string;
   eventDescription?: string;
+  earlyBadgeQualified?: boolean;
+earlyBadgeLabel?: string;
+earlyBadgeEmailMessage?: string;
+signupPosition?: number;
 }) {
   const apiKey = process.env.KLAVIYO_PRIVATE_API_KEY;
 
@@ -55,6 +63,10 @@ export async function sendKlaviyoEvent({
             event_time_readable: readableEventTime,
             location,
             event_description: eventDescription,
+            early_badge_qualified: earlyBadgeQualified,
+early_badge_label: earlyBadgeLabel,
+early_badge_email_message: earlyBadgeEmailMessage,
+signup_position: signupPosition,
           },
 
           metric: {
