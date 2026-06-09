@@ -57,12 +57,13 @@ export default async function CheckInPage({
 
   return (
     <CheckInClient
-      eventTitle={event.title}
-      slug={slug}
-      registrations={registrations || []}
-      checkedInCount={checkedInCount}
-      registeredCount={registeredCount}
-      checkInAction={checkInRunner}
-    />
+  eventTitle={event.title}
+  slug={slug}
+  registrations={registrations || []}
+  checkedInCount={checkedInCount}
+  registeredCount={registeredCount}
+  checkInAction={checkInRunner}
+  earlyBadgeLabel={event.early_badge_label || "Early Signup"}
+/>
   );
 }

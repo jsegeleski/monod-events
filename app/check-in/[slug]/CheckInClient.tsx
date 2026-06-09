@@ -18,6 +18,7 @@ export default function CheckInClient({
   checkedInCount,
   registeredCount,
   checkInAction,
+  earlyBadgeLabel,
 }: {
   eventTitle: string;
   slug: string;
@@ -25,6 +26,7 @@ export default function CheckInClient({
   checkedInCount: number;
   registeredCount: number;
   checkInAction: (formData: FormData) => void;
+  earlyBadgeLabel: string;
 }) {
   const [search, setSearch] = useState("");
 
@@ -70,7 +72,7 @@ export default function CheckInClient({
   </span>
 
   {runner.early_badge_qualified && (
-    <span className="runner-badge">Early Signup</span>
+    <span className="runner-badge">{earlyBadgeLabel}</span>
   )}
 </h3>
               <p>{runner.email}</p>
