@@ -1040,3 +1040,9 @@ tr:hover td {
   font-size: 10px;
   font-weight: 400;
 }
+
+.checkin-button:disabled,
+.undo-checkin-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}

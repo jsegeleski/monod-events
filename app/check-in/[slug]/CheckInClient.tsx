@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useFormStatus } from "react-dom";
 
 type Registration = {
   id: string;
@@ -10,6 +11,26 @@ type Registration = {
   checked_in: boolean;
   early_badge_qualified: boolean;
 };
+
+function CheckInSubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button type="submit" className="checkin-button" disabled={pending}>
+      {pending ? "Checking In..." : "Check In"}
+    </button>
+  );
+}
+
+function UndoCheckInButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button type="submit" className="undo-checkin-button" disabled={pending}>
+      {pending ? "Updating..." : "Undo"}
+    </button>
+  );
+}
 
 export default function CheckInClient({
   eventTitle,
@@ -86,9 +107,7 @@ export default function CheckInClient({
   <input type="hidden" name="slug" value={slug} />
   <input type="hidden" name="checked_in" value="false" />
 
-  <button type="submit" className="undo-checkin-button">
-    Undo
-  </button>
+  <UndoCheckInButton />
 </form>
             ) : (
               <form action={checkInAction}>
@@ -96,9 +115,7 @@ export default function CheckInClient({
                 <input type="hidden" name="slug" value={slug} />
                 <input type="hidden" name="checked_in" value="true" />
 
-                <button type="submit" className="checkin-button">
-                  Check In
-                </button>
+                <CheckInSubmitButton />
               </form>
             )}
           </article>
