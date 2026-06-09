@@ -153,7 +153,14 @@ export default async function EventAdminPage({
                   <td>{runner.email}</td>
                   <td>{runner.newsletter_opt_in ? "Yes" : "No"}</td>
                   <td>{runner.checked_in ? "Yes" : "No"}</td>
-                  <td>{new Date(runner.created_at).toLocaleString()}</td>
+                  <td>{new Date(runner.created_at).toLocaleString("en-CA", {
+  timeZone: "America/Edmonton",
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+})}</td>
                 </tr>
               ))}
             </tbody>
