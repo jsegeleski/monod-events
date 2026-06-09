@@ -46,7 +46,7 @@ export default async function CheckInPage({
 
   const { data: registrations } = await supabaseAdmin
     .from("registrations")
-    .select("id, first_name, last_name, email, checked_in")
+    .select("id, first_name, last_name, email, checked_in, early_badge_qualified")
     .eq("event_id", event.id)
     .order("created_at", { ascending: true });
 
