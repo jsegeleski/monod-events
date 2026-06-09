@@ -8,6 +8,7 @@ type Registration = {
   last_name: string;
   email: string;
   checked_in: boolean;
+  early_badge_qualified: boolean;
 };
 
 export default function CheckInClient({
@@ -63,9 +64,15 @@ export default function CheckInClient({
         {filteredRegistrations.map((runner) => (
           <article key={runner.id} className="checkin-card">
             <div>
-              <h3>
-                {runner.first_name} {runner.last_name}
-              </h3>
+              <h3 className="runner-name-line">
+  <span>
+    {runner.first_name} {runner.last_name}
+  </span>
+
+  {runner.early_badge_qualified && (
+    <span className="runner-badge">Early Signup</span>
+  )}
+</h3>
               <p>{runner.email}</p>
             </div>
 

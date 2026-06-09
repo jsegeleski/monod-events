@@ -41,27 +41,26 @@ const userAgent = headersList.get("user-agent") || "unknown";
     throw new Error("Event not found");
   }
 
-  const { data: registration, error } = await supabaseAdmin
-    .from("registrations")
-    .insert({
-      event_id: eventId,
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      accepted_waiver: acceptedWaiver,
-      accepted_terms: acceptedTerms,
-      newsletter_opt_in: newsletterOptIn,
-      source: "monod_events_app",
-      waiver_accepted_at: acceptedWaiver ? now : null,
-      terms_accepted_at: acceptedTerms ? now : null,
-      marketing_consent_timestamp: newsletterOptIn ? now : null,
-      ip_address: ipAddress,
-user_agent: userAgent,
-waiver_version: "2026-05-26",
-terms_version: "2026-05-26",
-    })
-    .select()
-    .single();
+const { data: registration, error } = await supabaseAdmin.rpc(
+  "register_event_runner",
+  {
+    p_event_id: eventId,
+    p_first_name: firstName,
+    p_last_name: lastName,
+    p_email: email,
+    p_accepted_waiver: acceptedWaiver,
+    p_accepted_terms: acceptedTerms,
+    p_newsletter_opt_in: newsletterOptIn,
+    p_source: "monod_events_app",
+    p_waiver_accepted_at: acceptedWaiver ? now : null,
+    p_terms_accepted_at: acceptedTerms ? now : null,
+    p_marketing_consent_timestamp: newsletterOptIn ? now : null,
+    p_ip_address: ipAddress,
+    p_user_agent: userAgent,
+    p_waiver_version: "2026-05-26",
+    p_terms_version: "2026-05-26",
+  }
+);
 
   if (error) {
     if (error.code === "23505") {

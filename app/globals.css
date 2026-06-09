@@ -1021,3 +1021,21 @@ tr:hover td {
   width: 18px;
   height: 18px;
 }
+
+.runner-name-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.runner-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: #2a2a2a;
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 400;
+}
