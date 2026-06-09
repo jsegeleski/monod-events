@@ -118,14 +118,10 @@ export default async function AdminPage({
               <Link href={`/admin/events/${event.id}`} className="event-row-link">
                 <div className="event-date-block">
                   <span>
-                    {new Date(event.event_date).toLocaleDateString("en-CA", {
-                      month: "short",
-                    })}
+                    {formatEventDate(event.event_date).split(",")[1].trim().split(" ")[0]}
                   </span>
                   <strong>
-                    {new Date(event.event_date).toLocaleDateString("en-CA", {
-                      day: "2-digit",
-                    })}
+                    {formatEventDate(event.event_date).split(",")[1].trim().split(" ")[1]}
                   </strong>
                 </div>
 
