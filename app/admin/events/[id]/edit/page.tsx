@@ -19,6 +19,12 @@ async function updateEvent(formData: FormData) {
       waiver_url: String(formData.get("waiver_url")),
       terms_url: String(formData.get("terms_url")),
       status: String(formData.get("status")),
+      early_badge_enabled: formData.get("early_badge_enabled") === "on",
+early_badge_limit: formData.get("early_badge_limit")
+  ? Number(formData.get("early_badge_limit"))
+  : null,
+early_badge_label: String(formData.get("early_badge_label") || ""),
+early_badge_email_message: String(formData.get("early_badge_email_message") || ""),
     })
     .eq("id", id);
 
@@ -111,6 +117,49 @@ export default async function EditEventPage({
             Terms URL
             <input className="input" name="terms_url" defaultValue={event.terms_url || ""} />
           </label>
+
+          <div className="form-section">
+  <div className="eyebrow">Early Signup Badge</div>
+
+  <label className="checkbox-label">
+    <input
+      type="checkbox"
+      name="early_badge_enabled"
+      defaultChecked={event.early_badge_enabled}
+    />
+    <span>Enable badge for first signups</span>
+  </label>
+
+  <label className="label">
+    First X People
+    <input
+      className="input"
+      type="number"
+      name="early_badge_limit"
+      min="1"
+      defaultValue={event.early_badge_limit || ""}
+    />
+  </label>
+
+  <label className="label">
+    Badge Label
+    <input
+      className="input"
+      name="early_badge_label"
+      defaultValue={event.early_badge_label || ""}
+    />
+  </label>
+
+  <label className="label">
+    Email Message
+    <textarea
+      className="textarea"
+      name="early_badge_email_message"
+      rows={3}
+      defaultValue={event.early_badge_email_message || ""}
+    />
+  </label>
+</div>
 
           <label className="label">
             Status
