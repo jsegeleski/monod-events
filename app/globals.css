@@ -964,9 +964,9 @@ tr:hover td {
   display: block;
   color: var(--text);
   font-size: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.25;
 }
 
 .admin-event-links small {
