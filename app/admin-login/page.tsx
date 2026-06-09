@@ -13,10 +13,12 @@ async function login(formData: FormData) {
   const cookieStore = await cookies();
 
   cookieStore.set("admin_auth", "true", {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-  });
+  httpOnly: true,
+  sameSite: "lax",
+  secure: process.env.NODE_ENV === "production",
+  path: "/",
+  maxAge: 60 * 60 * 24 * 30,
+});
 
   redirect("/admin");
 }
